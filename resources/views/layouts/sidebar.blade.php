@@ -26,7 +26,9 @@
                 @foreach ($berita_semua as $berita)
                     <div class="post-item">
                         <h4><a href="{{ route('berita.detail', $berita->slug) }}">{{ $berita->title }}</a></h4>
-                        <time datetime="2020-01-01">{{ $berita->created_at->format('d M Y') }}</time>
+                        <time datetime="2020-01-01">
+                            {{ \Carbon\Carbon::parse($berita->publish_date)->format('d M Y') }}
+                        </time>
                     </div>
                 @endforeach
             @endif

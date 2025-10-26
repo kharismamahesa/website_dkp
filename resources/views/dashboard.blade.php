@@ -137,7 +137,7 @@
                             <div class="d-flex align-items-center mt-2">
                                 <i class="bi bi-calendar3 text-white-50 me-2"></i>
                                 <small class="text-white-50">
-                                    {{ \Carbon\Carbon::parse($berita_terakhir->created_at)->format('d M Y') }}
+                                    {{ \Carbon\Carbon::parse($berita_terakhir->publish_date)->format('d M Y') }}
                                 </small>
                             </div>
                             <p class="text-white opacity-75 mt-2" style="font-size: 0.95rem;">
@@ -167,7 +167,7 @@
                                                         <div class="d-flex align-items-center mt-2">
                                                             <i class="bi bi-calendar3 text-white-50 me-2"></i>
                                                             <small class="text-white-50">
-                                                                {{ \Carbon\Carbon::parse($berita->created_at)->format('d M Y') }}
+                                                                {{ \Carbon\Carbon::parse($berita->publish_date)->format('d M Y') }}
                                                             </small>
                                                         </div>
                                                         <a href="{{ url('berita/' . $berita->slug) }}"

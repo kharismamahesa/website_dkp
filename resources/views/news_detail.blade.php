@@ -24,11 +24,15 @@
                             </h2>
                             <div class="meta-top">
                                 <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                            href="#">{{ $berita->user->name ?? '-' }}</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                            href="#"><time
-                                                datetime="2020-01-01">{{ $berita->created_at->format('d M Y') }}</time></a>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> 
+                                        <a href="#">{{ $berita->user->name ?? '-' }}</a>
+                                    </li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i>
+                                        <a href="#">
+                                            <time datetime="2020-01-01">
+                                                {{ \Carbon\Carbon::parse($berita->publish_date)->format('d M Y') }}
+                                            </time>
+                                        </a>  
                                     </li>
                                 </ul>
                             </div>

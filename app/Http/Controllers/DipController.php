@@ -14,7 +14,10 @@ class DipController extends Controller
      */
     public function index()
     {
-        $berita_semua = News::where('status', 'published')->latest()->take(5)->get();
+        $berita_semua = News::where('status', 'published')
+            ->orderBy('publish_date', 'desc')
+            ->take(5)
+            ->get();
         $dip_categories = DipCategory::with('dip_documents')->get();
 
         return view('dip', [

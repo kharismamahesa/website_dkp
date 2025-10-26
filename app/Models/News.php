@@ -19,6 +19,7 @@ class News extends Model
         'thumbnail',
         'status',
         'user_id',
+        'publish_date'
     ];
 
     protected static function booted()

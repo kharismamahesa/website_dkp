@@ -18,9 +18,18 @@ class DashboardController extends Controller
         $today = Carbon::today();
         $tomorrow = Carbon::tomorrow();
 
-        $berita_terakhir = News::where('status', 'published')->latest()->first();
-        $berita_lainnya = News::where('status', 'published')->latest()->skip(1)->take(4)->get();
-        $berita_semua = News::where('status', 'published')->latest()->take(5)->get();
+        $berita_terakhir = News::where('status', 'published')
+            ->orderBy('publish_date', 'desc')
+            ->first();
+        $berita_lainnya = News::where('status', 'published')
+            ->orderBy('publish_date', 'desc')
+            ->skip(1)
+            ->take(4)
+            ->get();
+        $berita_semua = News::where('status', 'published')
+            ->orderBy('publish_date', 'desc')
+            ->take(5)
+            ->get();
         $slider_terakhir = Slider::where('status', 1)->latest()->take(5)->get();
         $data_bidang = Department::all();
         $galeri = Gallery::all();
@@ -45,7 +54,10 @@ class DashboardController extends Controller
 
     public function sekapursirih()
     {
-        $berita_semua = News::where('status', 'published')->latest()->take(5)->get();
+        $berita_semua = News::where('status', 'published')
+            ->orderBy('publish_date', 'desc')
+            ->take(5)
+            ->get();
         return view('sekapursirih', [
             'berita_semua' => $berita_semua,
         ]);
@@ -53,7 +65,10 @@ class DashboardController extends Controller
 
     public function visimisi()
     {
-        $berita_semua = News::where('status', 'published')->latest()->take(5)->get();
+        $berita_semua = News::where('status', 'published')
+            ->orderBy('publish_date', 'desc')
+            ->take(5)
+            ->get();
         return view('visimisi', [
             'berita_semua' => $berita_semua,
         ]);
@@ -61,7 +76,10 @@ class DashboardController extends Controller
 
     public function sejarah()
     {
-        $berita_semua = News::where('status', 'published')->latest()->take(5)->get();
+        $berita_semua = News::where('status', 'published')
+            ->orderBy('publish_date', 'desc')
+            ->take(5)
+            ->get();
         return view('sejarah', [
             'berita_semua' => $berita_semua,
         ]);
@@ -69,7 +87,10 @@ class DashboardController extends Controller
 
     public function tugasdanfungsi()
     {
-        $berita_semua = News::where('status', 'published')->latest()->take(5)->get();
+        $berita_semua = News::where('status', 'published')
+            ->orderBy('publish_date', 'desc')
+            ->take(5)
+            ->get();
         return view('tugasfungsi', [
             'berita_semua' => $berita_semua,
         ]);
