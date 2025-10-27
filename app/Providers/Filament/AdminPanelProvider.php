@@ -2,9 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Widgets\StatsOverview;
-use App\Filament\Widgets\ComplaintsChart;
-use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -26,10 +23,8 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
             ->id('admin')
             ->path('admin')
-            ->login()
             ->colors([
                 'primary' => Color::Green,
             ])
@@ -40,8 +35,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                StatsOverview::class,
-                ComplaintsChart::class,
+                Widgets\AccountWidget::class,
+                Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -56,6 +51,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->login();
     }
 }

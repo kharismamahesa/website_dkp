@@ -4,32 +4,38 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\NewsResource\Pages;
 use App\Models\News;
-use Filament\Forms\Form;
-use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Table;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class NewsResource extends Resource
 {
     protected static ?string $model = News::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+
     protected static ?int $navigationSort = 1;
+
     protected static ?string $navigationLabel = 'Berita';
+
     protected static ?string $navigationGroup = 'Manajemen';
+
     public static function getPluralLabel(): string
     {
         return 'Daftar Berita';
     }
+
     public static function getModelLabel(): string
     {
         return 'Berita';
@@ -54,6 +60,11 @@ class NewsResource extends Resource
 
                 Textarea::make('excerpt')
                     ->rows(3),
+
+                DatePicker::make('publish_date')
+                    ->label('Tanggal Publikasi')
+                    ->default(now())
+                    ->required(),
 
                 RichEditor::make('content')
                     ->required()
@@ -102,6 +113,10 @@ class NewsResource extends Resource
                     ])
                     ->sortable(),
                 TextColumn::make('user.name')->label('Author'),
+                TextColumn::make('publish_date')
+                    ->label('Tanggal Publikasi')
+                    ->date('d M Y')
+                    ->sortable(),
                 TextColumn::make('created_at')->dateTime('d M Y'),
             ])
             ->defaultSort('created_at', 'desc')

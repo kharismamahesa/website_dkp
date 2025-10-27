@@ -3,10 +3,10 @@
 namespace App\Filament\Resources\ComplaintResource\Pages;
 
 use App\Filament\Resources\ComplaintResource;
-use Filament\Resources\Pages\EditRecord;
-use Filament\Notifications\Notification;
-use Illuminate\Support\Facades\Mail;
 use App\Mail\ComplaintMail;
+use Filament\Notifications\Notification;
+use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Facades\Mail;
 
 class EditComplaint extends EditRecord
 {
